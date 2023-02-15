@@ -1,0 +1,5 @@
+<div *ngIf="todo" [ngClass]="todo.isDone ? 'todo done' : 'todo'">
+  <button class="status" (click)="changeStatus()"></button>
+  <div>{{todo.name}}</div>
+  <button class="remove" (click)="removeTodo()"></button>
+</div>

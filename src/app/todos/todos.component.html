@@ -1,0 +1,30 @@
+<div class="todos">
+  <!-- Todo: Create Form -->
+  <form class="newTodo" [formGroup]="form" onSumbit="createTodo($event)">
+    <input
+      id="createTodoInput"
+      formControlName="text"
+      type="text"
+      aria-label="Add todo"
+      (keydown.enter)="createTodo($event.target.value)"
+      placeholder="+ tap to add a todo"
+    />
+  </form>
+
+  <div *ngIf="todoList && todoList.length > 0; else elseBlock">
+    <app-todo
+      *ngFor="let todo of todoList"
+      [todo]="todo"
+      (sendRemoveAction)="removeTodo($event)"
+      (sendEditAction)="editTodo($event)"
+    ></app-todo>
+  </div>
+  <ng-template #elseBlock>
+    <div class="todo-empty">
+      <h3>
+        "There aren't any todos. Why don't you
+        <a href="/todos#createTodoInput">create one?</a>
+      </h3>
+    </div>
+  </ng-template>
+</div>
